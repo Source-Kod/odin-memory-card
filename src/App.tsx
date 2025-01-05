@@ -54,12 +54,13 @@ function App() {
   };
 
   const updateScore = (cardId: string) => {
+    //  check if card was already clicked - reset game
     if (chosenCards.includes(cardId)) {
-      // Card was already clicked - reset game
       setScore(0);
       setChosenCards([]);
-    } else {
-      // Card wasn't clicked yet - update score
+    }
+    // check if card wasn't clicked yet - update score
+    if (!chosenCards.includes(cardId)) {
       const newScore = score + 1;
       setScore(newScore);
       if (newScore > bestScore) {
