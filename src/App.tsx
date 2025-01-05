@@ -10,7 +10,13 @@ function App() {
     { id: "charmander", cardImg: null },
     { id: "squirtle", cardImg: null },
     { id: "bulbasaur", cardImg: null },
-    // TODO Add more Pokemon. need total of 12.
+    { id: "eevee", cardImg: null },
+    { id: "mewtwo", cardImg: null },
+    { id: "snorlax", cardImg: null },
+    { id: "gyarados", cardImg: null },
+    { id: "dragonite", cardImg: null },
+    { id: "gengar", cardImg: null },
+    { id: "charizard", cardImg: null },
   ]);
 
   const getCardImages = async () => {
@@ -65,22 +71,24 @@ function App() {
 
   return (
     <>
-      <div className="header">
-        <h1>Memory Game</h1>
-        <h3>Click each card, but only once.</h3>
-        <div className="scoreboard flex justify-center gap-4">
-          <p>Current Score: {score}</p>
-          <p>Best Score: {bestScore}</p>
+      <div className="header flex flex-col items-center">
+        <h1 className="text-2xl font-bold">Memory Game</h1>
+        <h3 className="text-xl">Click each card, but only once.</h3>
+        {/* scoreboard */}
+        <div className="flex justify-center gap-4">
+          <p className="text-xl">Current Score: {score}</p>
+          <p className="text-xl">Best Score: {bestScore}</p>
         </div>
       </div>
-      <div className="gameboard">
+      {/* gameboard */}
+      <div className="mx-auto grid max-w-5xl grid-cols-4 gap-8 p-8">
         {cards.map((card) => (
           <div
             key={card.id}
+            className="flex aspect-square cursor-pointer justify-center rounded-xl bg-neutral-400 shadow-black hover:shadow-lg"
             onClick={() => updateScore(card.id)}
-            className="cursor-pointer"
           >
-            <img src={card.cardImg} alt={card.id} />
+            <img src={card.cardImg} alt={card.id} className="" />
           </div>
         ))}
       </div>
