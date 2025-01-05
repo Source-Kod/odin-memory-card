@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 
+interface Card {
+  id: string;
+  cardImg: string | null;
+}
+
 function App() {
-  const [score, setScore] = useState(0);
-  const [bestScore, setBestScore] = useState(0);
-  const [chosenCards, setChosenCards] = useState([]);
-  const [cards, setCards] = useState([
+  const [score, setScore] = useState<number>(0);
+  const [bestScore, setBestScore] = useState<number>(0);
+  const [chosenCards, setChosenCards] = useState<string[]>([]);
+  const [cards, setCards] = useState<Card[]>([
     { id: "ditto", cardImg: null },
     { id: "pikachu", cardImg: null },
     { id: "charmander", cardImg: null },
@@ -48,7 +53,7 @@ function App() {
     setCards(shuffled);
   };
 
-  const updateScore = (cardId) => {
+  const updateScore = (cardId: string) => {
     if (chosenCards.includes(cardId)) {
       // Card was already clicked - reset game
       setScore(0);
@@ -88,7 +93,7 @@ function App() {
             className="flex aspect-square cursor-pointer justify-center rounded-xl bg-neutral-400 shadow-black hover:shadow-lg"
             onClick={() => updateScore(card.id)}
           >
-            <img src={card.cardImg} alt={card.id} className="" />
+            <img src={card.cardImg ?? ""} alt={card.id} className="" />
           </div>
         ))}
       </div>
